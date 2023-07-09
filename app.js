@@ -58,6 +58,7 @@ app.post("/novojogador/:id?", (req,res) => {
     let jogar = Boolean(req.body.jogar);
     let id = req.body.id;
     let jogador = {
+        id:uuidv4(),
         nome,
         contato,
         jogar
@@ -81,6 +82,84 @@ app.post("/novojogador/:id?", (req,res) => {
     res.redirect(`/novoJogador?id=${id}`);  
 })
 
-app.listen(8080,() => {
-    console.log("Servidor rodando na url http://localhost:8080");
+app.post("/excluirPartida", (req,res) => {
+    let id = req.body.id;
+    let partidas;
+    let novas_partidas = [];
+    fs.readFile("partidas.json",(err,content) => {
+        if(!err){
+            partidas = JSON.parse(content);
+            partidas.partidas.forEach(partida => {
+                if(partida.id !== id){
+                    novas_partidas.push(partida);
+                }
+            })
+            partidas.partidas = novas_partidas;
+            fs.writeFile("partidas.json",JSON.stringify(partidas),(err) => {
+                if(err){
+                    console.error(err);
+                }
+            })
+        }
+    })
+    res.redirect("/");
+})
+
+app.post("/excluirJogador", (req,res) => {
+    let idPartida = req.body.idPartida;
+    let idJogador = req.body.idJogador;
+    let partidas;
+    let novos_jogadores = [];
+    fs.readFile("partidas.json",(err,content) => {
+        if(!err){
+            partidas = JSON.parse(content);
+            partidas.partidas.forEach(partida => {
+                if(partida.id === idPartida){
+                    partida.jogadores.forEach(jogador => {
+                        if(jogador.id !== idJogador){
+                            novos_jogadores.push(jogador);
+                        }
+                    })
+                    partida.jogadores = novos_jogadores;
+                }
+            })
+            fs.writeFile("partidas.json",JSON.stringify(partidas),(err) => {
+                if(err){
+                    console.error(err);
+                }
+            })
+        }
+    })
+    res.redirect(`/novoJogador?id=${idPartida}`);
+})
+
+app.post("/setjogador", (req,res) => {
+    let idPartida = req.body.partidaJogar;
+    let idJogador = req.body.IDjogar;
+    let jogar = Boolean(req.body.jogar);
+    let partidas;
+    fs.readFile("partidas.json",(err,content) => {
+        if(!err){
+            partidas = JSON.parse(content);
+            partidas.partidas.forEach(partida => {
+                if(partida.id === idPartida){
+                    partida.jogadores.forEach(jogador => {
+                        if(jogador.id === idJogador){
+                            jogador.jogar = jogar;
+                        }
+                    })
+                }
+            })
+            fs.writeFile("partidas.json",JSON.stringify(partidas),(err) => {
+                if(err){
+                    console.error(err);
+                }
+            })
+        }
+    })
+    res.redirect(`/novoJogador?id=${idPartida}`);
+})
+
+app.listen(8090,() => {
+    console.log("Servidor rodando na url http://localhost:8090");
 })

@@ -20,20 +20,67 @@ window.addEventListener("load",() => {
                         let contato = document.createElement("td");
                         let jogar = document.createElement("input");
                         let excluir = document.createElement("button");
+                        let input_jogador = document.createElement("input");
+                        let input_excluir = document.createElement("input");
+                        let form_excluir = document.createElement("form");
+                        let td_excluir = document.createElement("td");
+                        let form_jogar = document.createElement("form");
+                        let input_partidaJogar = document.createElement("input");
+                        let button_jogar = document.createElement("button");
+                        let input_IDjogar = document.createElement("input");
+                        let td_jogar = document.createElement("td");
+
+                        form_jogar.action = "/setJogador";
+                        form_jogar.method = "post";
+                        input_IDjogar.name = "IDjogar";
+                        input_IDjogar.type = "hidden";
+                        input_partidaJogar.name = "partidaJogar";
+                        input_partidaJogar.type = "hidden";
+                        button_jogar.type = "submit";
+                        button_jogar.style.opacity = 0;
+                        input_IDjogar.value = jogador.id;
+                        input_partidaJogar.value = id;
+                        jogar.type = "checkbox";
+                        jogar.checked = jogador.jogar;
+                        jogar.name = "jogar";
+
+                        input_jogador.type = "hidden";
+                        input_excluir.type = "hidden";
+                        input_jogador.name = "idJogador";
+                        input_excluir.name = "idPartida";
+                        input_jogador.value = jogador.id;
+                        input_excluir.value = id;
+                        excluir.type = "submit";
+                        form_excluir.action = "/excluirJogador";
+                        form_excluir.method = "post";
+                        excluir.textContent = "Excluir";
 
                         nome.textContent = jogador.nome;
                         contato.textContent = jogador.contato;
-                        jogar.type = "checkbox";
-                        jogar.checked = jogador.jogar;
-                        excluir.textContent = "Excluir";
-                       
+                      
+                        form_excluir.appendChild(input_jogador);
+                        form_excluir.appendChild(input_excluir);
+                        form_excluir.appendChild(excluir);
+                        td_excluir.appendChild(form_excluir);
+
+                        form_jogar.appendChild(input_IDjogar);
+                        form_jogar.appendChild(input_partidaJogar);
+                        form_jogar.appendChild(jogar);
+                        form_jogar.appendChild(button_jogar);
+                        td_jogar.appendChild(form_jogar);
+
                         tr.appendChild(nome);  
                         tr.appendChild(contato);
-                        tr.appendChild(jogar);
-                        tr.appendChild(excluir);
+                        tr.appendChild(td_jogar);
+                        tr.appendChild(td_excluir);
 
                         tabela.appendChild(tr);
-                    });
+
+                        jogar.addEventListener("click",() => {
+                            jogador.jogar = jogar.checked;
+                            button_jogar.click();
+                        })
+                    })
                 }
                 //criar evento do botao
             })
