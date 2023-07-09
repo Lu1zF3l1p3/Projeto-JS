@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html lang="pt">
 <head>
+    <link rel="stylesheet" href="css/tabela.css">
+    <link rel="stylesheet" href="css/form.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jogadores</title>
 </head>
 <body>
-    <a href="/"><button>Página Principal</button></a>
+    <a href="/"><button class="botaoHome">Página Principal</button></a>
     <table>
         <tr>
             <th>Nome</th>
@@ -18,16 +20,16 @@
     <br>
     <h1>Adicionar jogador</h1>
     <br>
-    <form action="/novoJogador" method="post">
+    <form class="form" action="/novoJogador" method="post">
         <input name="nome" type="text" placeholder="Informe o nome:">
         <input name="contato" type="text" placeholder="Informe o número do contato:">
-        <label for="">Vai jogar?</label>
-        <input name="jogar" type="checkbox">
+        <label>Vai jogar?<input name="jogar" type="checkbox"></label>
+        
         <button type="submit">Salvar</button>
     </form>
     <br>
     <br>
     <footer>Qualquer problema f5 resolve</footer>
-    <script src="js/novoJogador.js"></script>
+    <script src="js/jogadores.js"></script>
 </body>
 </html>

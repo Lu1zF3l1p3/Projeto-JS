@@ -1,0 +1,31 @@
+.form{
+    width: max-content;
+    display: flex;
+    flex-direction: column;
+    padding: 4px;
+    border: 1px solid black;
+}
+button {
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+}
+.botaoExcluir{
+    background-color: #f44336;
+}
+.botaoHome{
+    border-radius: 10px;
+    margin: 10px;
+}
+h1{
+    width: max-content;
+    color: #4CAF50;
+}
+footer{
+    margin-top: 7vh;
+    font-size: 8px; 
+    font-weight: bold;
+}

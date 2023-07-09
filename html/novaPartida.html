@@ -1,12 +1,16 @@
 <!DOCTYPE html>
 <html lang="pt">
 <head>
+    <link rel="stylesheet" href="css/tabela.css">
+    <link rel="stylesheet" href="css/form.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NovaPartida</title>
 </head>
 <body>
-    <form action="/novaPartida" method="post">
+    <a href="/"><button class="botaoHome">Página Principal</button></a>
+    <h1>Nova Partida</h1>
+    <form class="form" action="/novaPartida" method="post">
         <input name="titulo" id="titulo" type="text" placeholder="informe o título da partida:">
         <input name="local" id="local" type="text" placeholder="Informe o local da partida:">
         <input name="data" id="data" type="datetime-local" placeholder="Informe a data da partida:">
@@ -15,6 +19,5 @@
     <br>
     <br>
     <footer>Qualquer problema f5 resolve</footer>
-    <script src="/js/novaPartida.js"></script>
 </body>
 </html>

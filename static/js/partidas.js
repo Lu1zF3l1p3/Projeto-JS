@@ -32,6 +32,7 @@ window.addEventListener("load",() => {
                 input_excluir.name = "id";
                 input_presenca.type = "hidden";
                 input_excluir.type = "hidden";
+                excluir.className = "botaoExcluir";
 
                 form_presenca.appendChild(input_presenca);
                 form_excluir.appendChild(input_excluir);

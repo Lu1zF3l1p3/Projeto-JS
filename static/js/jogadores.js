@@ -14,7 +14,6 @@ window.addEventListener("load",() => {
             partidas.partidas.forEach(partida => {
                 if(partida.id === id){
                     partida.jogadores.forEach(jogador => {
-                        console.log(jogador);
                         let tr = document.createElement("tr");
                         let nome = document.createElement("td");
                         let contato = document.createElement("td");
@@ -43,6 +42,7 @@ window.addEventListener("load",() => {
                         jogar.type = "checkbox";
                         jogar.checked = jogador.jogar;
                         jogar.name = "jogar";
+                        excluir.className = "botaoExcluir";
 
                         input_jogador.type = "hidden";
                         input_excluir.type = "hidden";
@@ -65,8 +65,8 @@ window.addEventListener("load",() => {
 
                         form_jogar.appendChild(input_IDjogar);
                         form_jogar.appendChild(input_partidaJogar);
+                        jogar.appendChild(button_jogar);
                         form_jogar.appendChild(jogar);
-                        form_jogar.appendChild(button_jogar);
                         td_jogar.appendChild(form_jogar);
 
                         tr.appendChild(nome);  
